@@ -39,30 +39,18 @@ void STROY()
 {
     int n ;
     cin >> n ;
-    vll arr(n) ;
+    vll arr(n), lis ;
     TAKE(arr, n) ;
-    int mx=1 ;
-    MAP mp ;
 
-    int left=0, right=0 ;
-    while(right < n)
+    lis.pb(-arr[0]) ;
+    for(int i=1 ; i<n ; i++)
     {
-        mp[arr[right]]++ ;
+        ll it = lower_bound(ALL(lis), -arr[i]) - lis.begin() ;
 
-        while(mp[arr[right]] > 1) 
-        {
-            mp[arr[left]]-- ;
-            if(mp[arr[left]] == 0) {
-                mp.erase(arr[left]) ;
-            }
-            left++ ;
-        }
-
-        ++right ;
-        mx = max(mx, right-left) ;
+        if(it == (int)lis.size()) lis.pb(-arr[i]) ;
     }
 
-    cout << mx ;
+    cout << lis.size() ;
 }
 
 int main()

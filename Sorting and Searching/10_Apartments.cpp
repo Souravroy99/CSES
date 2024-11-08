@@ -37,32 +37,36 @@ using namespace std;
 
 void STROY()
 {
-    int n ;
-    cin >> n ;
-    vll arr(n) ;
+    int n, m, k;
+    cin >> n >> m >> k ;
+    vll arr(n), brr(m) ;
+    
     TAKE(arr, n) ;
-    int mx=1 ;
-    MAP mp ;
+    TAKE(brr, m) ;
 
-    int left=0, right=0 ;
-    while(right < n)
+    SORT(arr) ;
+    SORT(brr) ;
+
+    int i=0, j=0, happy=0 ;
+
+    while(i<n && j<m)
     {
-        mp[arr[right]]++ ;
+        int diff = arr[i] - brr[j] ;
 
-        while(mp[arr[right]] > 1) 
-        {
-            mp[arr[left]]-- ;
-            if(mp[arr[left]] == 0) {
-                mp.erase(arr[left]) ;
-            }
-            left++ ;
+        if(abs(diff) <= k) {
+            happy++ ;
+            i++ ;
+            j++ ;
+        } 
+        else if(arr[i] < brr[j]) {
+            i++ ;
         }
-
-        ++right ;
-        mx = max(mx, right-left) ;
+        else {
+            j++ ;
+        }
     }
 
-    cout << mx ;
+    cout << happy ;
 }
 
 int main()

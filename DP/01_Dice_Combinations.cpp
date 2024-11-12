@@ -1,11 +1,23 @@
+// For the last two years, I have not been able to cross 'Pupil'
+// This is absolutely my fault For Sure
+// Today: 9th, JULY 2024
+// Let's go to the next level
+
+// Target : 'EXPERT' Before 30th, " DECEMBER 2024 "
+
+// 1. STROY
+// 2. whatever
+// ...
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-#define LINF LONG_LONG_MAX
+#define LPINF LONG_LONG_MAX
 #define LNINF LONG_LONG_MIN
-#define INF INT_MAX
+#define PINF INT_MAX
 #define NINF INT_MIN
 #define MOD 1000000007
+#define DMOD 998244353
 #define vll vector<ll>
 #define vvll vector<vll>
 #define pb push_back
@@ -13,8 +25,7 @@ using namespace std;
 #define vp vector<pair<ll, ll>>
 #define vs vector<string>
 #define fr(i, a, n) for (ll i = a; i < n; i++)
-#define rfr(i, a, n) for (ll i = n - 1; i >= a; i--)
-
+#define rfr(i, n, a) for (ll i = n; i >= a; i--)
 #define TAKE(arr, n)            \
     for (int i = 0; i < n; i++) \
     cin >> arr[i]
@@ -32,29 +43,58 @@ using namespace std;
 #define pn cout << "NO" << "\n"
 #define py cout << "YES" << '\n'
 #define pmo cout << -1
-#define imp cout << 1  
+#define imp cout << -1
 #define nl cout << '\n'
+
+
+ll dp[1000001] ;
+ll memoI(int n)
+{
+    if(n<=0) return (n == 0) ;
+    if(dp[n] != -1) return dp[n] ;
+
+    ll p = 0 ;
+
+    for(int idx=1 ; idx<=6 ; idx++)
+    {
+        if(idx <= n)
+            p += memoI(n-idx) ;
+    }
+ 
+    return dp[n] = p%MOD ;
+}
 
 void STROY()
 {
-    int n ;
-    cin >> n ;
-    vll arr(n), index(n+1) ;
-    TAKE(arr, n) ;
+    int n;
+    cin >> n;
 
-    for(int i=0 ; i<n ; i++) index[arr[i]] = i ;
-    int wrong=0 ;
+    memset(dp, 0, sizeof dp) ;
+    dp[0] = 1 ;
 
-    for(int i=2 ; i<=n ; i++) {
-        wrong += index[i-1] > index[i] ;
+    for(int i=1 ; i<=n ; i++)
+    {
+        for(int j=1 ; j<=min(i,6) ; j++)
+        {
+            if(j<=i)
+                dp[i] = (dp[i]%MOD + dp[i-j]%MOD)%MOD ;
+        }
     }
 
-    cout << ++wrong ;
+    cout << dp[n] ;
 }
+
 
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
-    STROY();
+
+    int t = 1;
+    // cin >> t;
+    while (t--)
+    {
+        STROY();
+        cout << endl;
+    }
 }

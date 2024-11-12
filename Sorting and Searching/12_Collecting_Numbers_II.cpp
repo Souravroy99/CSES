@@ -37,19 +37,30 @@ using namespace std;
 
 void STROY()
 {
-    int n ;
-    cin >> n ;
+    int n, q ;
+    cin >> n >> q ;
     vll arr(n), index(n+1) ;
     TAKE(arr, n) ;
 
     for(int i=0 ; i<n ; i++) index[arr[i]] = i ;
-    int wrong=0 ;
+    int wrong=1 ;
 
     for(int i=2 ; i<=n ; i++) {
         wrong += index[i-1] > index[i] ;
     }
 
-    cout << ++wrong ;
+    while(q--)
+    {
+        int num1, num2 ;
+        cin >> num1 >> num2 ;
+
+        num1 = arr[num1-1] ;
+        num2 = arr[num2-1] ;
+
+        int round = wrong ;
+
+        cout << round << endl ;
+    }
 }
 
 int main()

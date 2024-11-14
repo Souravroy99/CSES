@@ -12,8 +12,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
+#define PINF INT_MAX
+#define NINF INT_MIN
+#define MOD 1000000007
+#define DMOD 998244353
 #define vll vector<ll>
+#define vvll vector<vll>
 #define pb push_back
+#define pr pair<ll, ll>
+#define vp vector<pair<ll, ll>>
+#define vs vector<string>
+#define fr(i, a, n) for (ll i = a; i < n; i++)
+#define rfr(i, n, a) for (ll i = n; i >= a; i--)
 #define TAKE(arr, n)            \
     for (int i = 0; i < n; i++) \
     cin >> arr[i]

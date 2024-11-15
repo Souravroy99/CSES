@@ -2,13 +2,13 @@
 // This is absolutely my fault For Sure
 // Today: 9th, JULY 2024
 // Let's go to the next level
- 
+
 // Target : 'EXPERT' Before 30th, " DECEMBER 2024 "
- 
+
 // 1. STROY
 // 2. whatever
 // ...
- 
+
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -44,56 +44,65 @@ using namespace std;
 #define py cout << "YES" << '\n'
 #define imp cout << -1
 #define nl cout << '\n'
- 
- 
+
 /*
 ll dp[1000001];
-int memoI(vll &coins, ll amount)
+int memoI(int n)
 {
-    if (amount <= 0)
-        return (amount == 0);
-    if (dp[amount] != -1)
-        return dp[amount];
-    ll ans = 0;
- 
-    for (int i = 0; i < (int)coins.size(); i++) {
-        ans = (ans % MOD + memoI(coins, amount - coins[i]) % MOD) % MOD;
+    if (n == 0)
+        return 0;
+    if (dp[n] != -1)
+        return dp[n];
+
+    int ans = 1e9, amount = n;
+
+    while (amount > 0)
+    {
+        int lastDigit = amount % 10;
+
+        if (lastDigit != 0)
+            ans = min(ans, 1 + memoI(n - lastDigit));
+
+        amount /= 10;
     }
- 
-    return dp[amount] = ans;
+
+    return dp[n] = ans;
 }
-memset(dp, -1, sizeof dp) ;
-cout << memoI(coins, amount) ;
+memset(dp, -1, sizeof dp);
+cout << memoI(n);
 */
- 
- 
-ll DP[1000001] ;
+
+ll dP[1000001];
 
 void STROY()
 {
-    ll n, amount;
-    cin >> n >> amount;
-    vll coins(n);
-    TAKE(coins, n);
- 
-    memset(DP, 0, sizeof DP);
-    DP[0] = 1 ;
- 
-    for(int tar=1 ; tar<=amount ; tar++)
+    ll n;
+    cin >> n;
+
+    memset(dP, 0, sizeof dP);
+
+    for (int num = 1; num <= n; num++)
     {
-        for(int i=0 ; i<n ; i++)
+        ll amount = num, ans = n;
+
+        while (amount > 0)
         {
-            if(coins[i] <= tar)
+            int digit = amount % 10;
+            
+            if (digit != 0)
             {
-                DP[tar] += DP[tar-coins[i]] ;
-                DP[tar] %= MOD ;
+                ans = min(ans, 1 + dP[num - digit]);
             }
+
+            amount /= 10 ;
         }
+
+        dP[num] = ans ;
     }
- 
-    cout << DP[amount] ;
+
+    cout << dP[n];
 }
- 
+
 int main()
 {
     STROY();

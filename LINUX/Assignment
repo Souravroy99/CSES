@@ -1,0 +1,89 @@
+// 1.a) Even or odd
+// 1.b) Check Prime 
+// 1.c) Sum of digit of a given number
+// 1.d) Convert Celsius to fahrenheit within range 0 - 100
+// 1.e) Enter a file name change each line of a file in such a way that every line begins with "<<" and ends with ">>" 
+
+// 2.a) Input a file name and takes its file permission
+// 2.b) Enter two numbers a and b, enter a file name and print line a to line b, store the result in a file
+// 2.c) Write a shell program to read a file from from line n to line m and store the result in another file
+// 2.d) Write a program to generate first n fibonacci number
+// 2.e) Write a shell program to generate all combination of 1,2,3
+ 
+// 3.a) Write a program to take input a point (x1, y1) and test whether it lies inside or outside of X^2+Y^2 = 25
+// 3.b) Write a shell script to list of the roots of the characteristics equation
+// 3.c) Take input a file and convert to all lowercase letter to uppercase letter
+// 3.d) List all perfect numbers from 1 to 500
+// 3.e) Sinx series
+
+// 4.a) Test for prime using prime number
+// 4.b) Convert a number from any base to any base
+// 4.c) Write a program to perform binary search on a given set of array of data
+// 4.d) Program to perform bubble sort on a given set of array of data
+// 4.e) Write a program to merge two given given set of array of sorted order
+
+// 5.a) Write a program to check whether a string is palindrome or not
+// 5.b) Input a list of numbers and perform selection sort
+// 5.c) Write a shell script that will perform bubble sort on a set of data, the same script should be able to arrange the data in ascending or descending order as user's desire
+
+
+
+
+
+
+/*
+2.e: 
+
+echo "Combination 1,2,3"
+i=3
+while [ $i -gt 0 ]; do
+  j=3
+  while [ $j -gt 0 ]; do
+    k=3
+    while [ $k -gt 0 ]; do
+      if [ $i -ne $j ] && [ $j -ne $k ] && [ $k -ne $i ]; then
+        echo "$i$j$k"
+      fi
+      k=$(expr $k - 1)
+    done
+    j=$(expr $j - 1)
+  done
+  i=$(expr $i - 1)
+done
+*/
+
+
+/*
+2.d: 
+
+echo "Enter a number:"
+read n
+
+a=0
+b=1
+c=1
+i=1
+
+echo $b
+
+while [ $i -ne $n ]; do
+  c = $(expr $a + $b)
+  echo $c
+  a= $b
+  b =$c
+  i= $(expr $i + 1)
+done
+*/
+
+
+/*
+1.d:
+
+c=0
+while [ $c -le 100 ]
+do
+    f=$(echo "scale=2;(9*$c+160)/5" | bc)
+    echo "cel=$c --> fpr=$f"
+    c=$((c + 4)) 
+done
+*/

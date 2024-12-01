@@ -7,7 +7,7 @@ using namespace std;
     for (int i = 0; i < n; i++) \
     cin >> arr[i]
 
-//                                  TC = O(N^LogN) & SC = O(N)
+//                                  TC = O(N^2 * LogN) & SC = O(N)
 
 void STROY()
 {

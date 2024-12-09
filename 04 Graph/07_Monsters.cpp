@@ -1,26 +1,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-#define LPINF LONG_LONG_MAX
-#define LNINF LONG_LONG_MIN
-#define PINF INT_MAX
-#define NINF INT_MIN
-#define MOD 1000000007
-#define DMOD 998244353
 #define vll vector<ll>
 #define vvll vector<vll>
 #define vcc vector<char>
-#define vvcc vector<vcc>
-#define vbl vector<bool>
 #define vvbl vector<vbl>
 #define pb push_back
 #define pr pair<ll, ll>
-#define vp vector<pair<ll, ll>>
-#define vs vector<string>
 #define fr(i, a, n) for (ll i = a; i < n; i++)
-#define TAKE(arr, n)            \
-    for (int i = 0; i < n; i++) \
-    cin >> arr[i]
 #define nl cout << '\n'
 
 int xArr[] = {-1, 0, +1, 0};

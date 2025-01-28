@@ -15,7 +15,7 @@ void dfs(vector<int>adj[], int node, int parent)
 
         dfs(adj, child, node) ;
 
-        if(firstMax[child]+1 >= firstMax[node])
+        if(firstMax[child]+1 > firstMax[node])
         {
             secondMax[node] = firstMax[node] ;
             firstMax[node] = 1+firstMax[child] ;

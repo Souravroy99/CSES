@@ -20,9 +20,10 @@ void binary_lifting(vector<vector<int>>&up, int n)
 {
     int LOG = log2(n) ;
 
-    for(int level=1 ; level<=LOG ; level++)
+    // In Binary Lifting, we can change loop's position  
+    for(int child=1 ; child<n ; child++)
     {
-        for(int child=1 ; child<n ; child++)
+        for(int level=1 ; level<=LOG ; level++)
         {
             if(up[child][level-1] == -1) continue;
             up[child][level] = up[up[child][level-1]][level-1] ;

@@ -1,38 +1,56 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
-#define LPINF LONG_LONG_MAX
-#define LNINF LONG_LONG_MIN
-#define PINF INT_MAX
-#define NINF INT_MIN
 #define MOD 1000000007
-#define DMOD 998244353
-#define vll vector<ll>
 #define vvll vector<vll>
-#define pb push_back
-#define pr pair<ll, ll>
-#define vp vector<pair<ll, ll>>
-#define vs vector<string>
-#define fr(i, a, n) for (ll i = a; i < n; i++)
-#define rfr(i, n, a) for (ll i = n; i >= a; i--)
-#define TAKE(arr, n)            \
-    for (int i = 0; i < n; i++) \
-    cin >> arr[i]
-#define ALL(arr) (arr).begin(), (arr).end()
-#define SORTA(arr, n) sort(arr, arr + n)
-#define SORT(arr) sort(arr.begin(), arr.end())
-#define RSORT(arr) sort(arr.rbegin(), arr.rend())
-#define SUM(arr) accumulate(arr.begin(), arr.end(), 0LL)
-#define MAX(arr) *max_element(begin(arr), end(arr))
-#define MIN(arr) *min_element(begin(arr), end(arr))
-#define MAP map<ll, ll>
-#define UMAP unordered_map<ll, ll>
-#define ST set<ll>
-#define UST unordered_set<ll>
-#define pn cout << "NO" << "\n"
-#define py cout << "YES" << '\n'
-#define imp cout << -1
-#define nl cout << '\n'
+
+
+//  MOST SPACE OPTIMIZE
+
+int main()
+{
+    int n;
+    cin>>n ;
+    vector<vector<char>>mat(n, vector<char>(n)) ;
+    for(int i=0 ; i<n ; i++) {
+        for(int j=0 ; j<n ; j++) {
+            cin >> mat[i][j] ;
+        }
+    }
+    vector<int>dp(n, 0) ;
+
+    for(int j=0 ; j<n ; j++) 
+    {
+        if(mat[0][j] == '*') break ;
+        else dp[j] = 1 ;
+    }
+
+    bool flag = dp[0] ;
+
+    for(int i=1 ; i<n ; i++)
+    {
+        if(mat[i][0] == '*') flag = false ;
+        dp[0] = flag ;
+
+        for(int j=1 ; j<n ; j++)
+        {
+            if(mat[i][j] == '*') continue ;
+
+            int isRightPathPossible = mat[i][j-1] != '*' ;
+            int isDownPathPossible  = mat[i-1][j] != '*' ;
+
+            dp[j] = (isDownPathPossible ? dp[j] : 0) + (isRightPathPossible ? dp[j-1] : 0) ;
+            dp[j] %= MOD ;
+        }
+    }
+
+    int number_of_paths = (mat[n-1][n-1] != '*') ? dp[n-1] : 0 ;
+    cout << number_of_paths ;
+}
+
+
+
+
 
 /*
 ll dP[1001][1001] ;
@@ -99,7 +117,7 @@ void STROY()
 
     // Space Optimization
 
-    vll dpp(n, 0) ;
+    vector<ll> dpp(n, 0) ;
 
     bool flag = true ;
     dpp[0] = flag = grid[0][0] == '.' ;
@@ -112,7 +130,7 @@ void STROY()
     for(int i=1 ; i<n ; i++)
     {
         if(grid[i][0] == '*') flag = false ;
-        vll curr(n, 0) ;
+        vector<ll> curr(n, 0) ;
 
         if(flag) curr[0] = 1 ;
         else curr[0] = 0 ;

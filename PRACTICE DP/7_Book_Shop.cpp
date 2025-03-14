@@ -18,7 +18,7 @@ int main()
     {
         for(int amount=x ; amount>=price[i] ; amount--)
         {
-            dp[amount] = max(dp[amount], page[i]+dp[amount - price[i]]) ;
+            dp[amount] = max(dp[amount], page[i] + dp[amount - price[i]]) ;
         }
     }
 

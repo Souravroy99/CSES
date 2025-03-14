@@ -6,7 +6,7 @@ int dp[501][501] ;
 
 int memoI(int length, int width)
 {
-    if(length == width) return 0 ; //Square
+    if(length == width) return 0 ; // Square
 
     if(dp[length][width] != -1) return dp[length][width] ;
 
